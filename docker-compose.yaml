@@ -14,15 +14,14 @@ services:
     tty: true
     stdin_open: true
   db:
-    image: postgres
-    volumes:
-      - psgl_data:/var/lib/postgresql/data
+    image: mysql
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      PGTZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
     ports:
-      - '5432:5432'
+      - '3306:3306'
   front:
     build: ./front
     command: /bin/sh -c "yarn && yarn serve"
@@ -34,6 +33,7 @@ services:
       - ./front:/front
       - vue-cli-node-modules-volume:/front/node_modules
 volumes:
-  psgl_data:
+  mysql-data:
+    driver: local
   bundle:
   vue-cli-node-modules-volume:
