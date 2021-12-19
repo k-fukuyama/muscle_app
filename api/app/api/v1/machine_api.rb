@@ -9,5 +9,17 @@ class MachineApi < Grape::API
 
       present ({isCreated: true})
     end
+
+    patch '' do
+      machine = Machine.find_by(id: params[:machine][:id])
+      isUpdated = if machine.nil?
+                    status 404
+                    false
+                  else
+                    machine.update(name: params[:machine][:name], description: params[:machine][:description])
+                  end
+
+      present ({isUpdated: isUpdated})
+    end
   end
 end

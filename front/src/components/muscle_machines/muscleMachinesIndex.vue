@@ -2,7 +2,7 @@
   <div>
     <h1>筋トレ器具一覧</h1>
     <ul v-for="machine in machines" :key="machine.id">
-      <li>{{machine.name}}</li>
+      <li @click="moveToEditPage(machine)">{{machine.name}}</li>
     </ul>
 
     <v-btn v-on:click="movePage('machineNew')">
@@ -33,6 +33,10 @@ export default {
 
     movePage(page) {
       this.$router.push({name: page})
+    },
+
+    moveToEditPage(machine) {
+      this.$router.push({name: 'machineEdit', params: {machine: machine}})
     }
   }
 }

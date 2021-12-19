@@ -3,7 +3,7 @@
     <v-form
       ref="form"
       lazy-validation
-      @submit.prevent="postMachine()"
+      @submit.prevent="createOrUpdaterMachine()"
     >
       <v-text-field
         v-model="machine.name"
@@ -31,12 +31,16 @@ import machine from '../../models/machine.js'
 const newMachine = new machine()
 
 export default {
+  props: ['editTargetMachine'],
+  
   data: () => ({
     machine: newMachine.property()
   }),
 
   created () {
-    
+    if(this.editTargetMachine){
+      this.machine = this.editTargetMachine
+    }
   },
 
   methods: {
@@ -44,6 +48,24 @@ export default {
       axios.post(`http://localhost:3000/api/v1/machine`, {machine: this.machine}).then((res) => {
         console.log(res)
       })
+    },
+
+    updateMachine() {
+      axios.patch(`http://localhost:3000/api/v1/machine`, {machine: this.machine}).then((res) => {
+        console.log(res)
+      }).catch(({response}) => {
+        if(response.status == 404){
+          console.log('マシーンが見つかりませんでした')
+        }
+      })
+    },
+
+    createOrUpdaterMachine() {
+      if(this.editTargetMachine){
+        this.updateMachine()
+      }else{
+        this.postMachine()
+      }
     }
   }
 }
