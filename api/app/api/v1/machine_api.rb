@@ -21,5 +21,17 @@ class MachineApi < Grape::API
 
       present ({isUpdated: isUpdated})
     end
+
+    delete do
+      machine = Machine.find_by(id: params[:machine][:id])
+      isDeleted = if machine.nil?
+                    status 404
+                    false
+                  else
+                    machine.destroy
+                  end
+
+      present ({isDeleted: isDeleted})
+    end
   end
 end
