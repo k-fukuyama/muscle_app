@@ -1,7 +1,7 @@
-class MachineApi < Grape::API
-  resources :machine do
+class MuscleApi < Grape::API
+  resources :muscles do
     get do
-      present ({machines: Machine.all.select(:id, :name, :description)})
+      present ({muscles: Muscle.all})
     end
 
     post do
@@ -32,11 +32,6 @@ class MachineApi < Grape::API
                   end
 
       present ({isDeleted: isDeleted})
-    end
-
-    get 'muscle/:muscle_id' do
-      puts params
-      present ({machines: Machine.joins(:muscle_machines).where(muscle_machines: { muscle_id: params[:muscle_id] }).select(:id, :name)})
     end
   end
 end
