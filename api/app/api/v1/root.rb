@@ -4,4 +4,5 @@ class Root < Grape::API
   content_type :json, 'application/json'
 
   mount MachineApi
+  mount MuscleApi
 end
