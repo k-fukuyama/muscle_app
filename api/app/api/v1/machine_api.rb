@@ -36,7 +36,9 @@ class MachineApi < Grape::API
 
     get 'muscle/:muscle_id' do
       puts params
-      present ({machines: Machine.joins(:muscle_machines).where(muscle_machines: { muscle_id: params[:muscle_id] }).select(:id, :name)})
+      muscle_id = params[:muscle_id]
+      machines = Machine.joins(:muscle_machines).where(muscle_machines: { muscle_id: muscle_id }).select(:id, :name)
+      present ({machines: Services::MachineService.new.build_response(machines, muscle_id)})
     end
   end
 end

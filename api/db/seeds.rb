@@ -57,3 +57,10 @@ muscle_machines = [
 ]
 
 MuscleMachine.insert_all!(muscle_machines)
+
+training_way_vieods = [
+  { id: 1, muscle_id: 3, machine_id: 2, url: '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/4-Glg9A4s2M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',created_at: now, updated_at: now },
+  { id: 2, muscle_id: 1, machine_id: 1, url: '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/aN98D1YD00o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',created_at: now, updated_at: now },
+]
+
+TrainingWayVideo.insert_all!(training_way_vieods)
