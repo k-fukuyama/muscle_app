@@ -1,7 +1,7 @@
 class FoodApi < Grape::API
   resources :foods do
     get do
-      present ({foods: Food.all})
+      present ({foods: Services::FoodService.new.build_response(params)})
     end
 
     post do
