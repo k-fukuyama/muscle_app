@@ -7,4 +7,5 @@ class Root < Grape::API
   mount MuscleApi
   mount FoodApi
   mount TipApi
+  mount MenuApi
 end
