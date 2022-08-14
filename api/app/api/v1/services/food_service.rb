@@ -4,12 +4,21 @@ module Services
       return Food.all unless params.present?
 
       query = build_query(params)
-
-      Food.
-      where(query[:protein_condtion]).
-      where(query[:fat_condition]).
-      where(query[:carbohydrate_condition]).
-      where(query[:calorie_condition])
+      if params[:menu_id].present?
+        registered_food_ids = Menu.find(params[:menu_id]).foods.pluck(:id)
+        Food.
+        where.not(id: registered_food_ids).
+        where(query[:protein_condtion]).
+        where(query[:fat_condition]).
+        where(query[:carbohydrate_condition]).
+        where(query[:calorie_condition])
+      else
+        Food.
+        where(query[:protein_condtion]).
+        where(query[:fat_condition]).
+        where(query[:carbohydrate_condition]).
+        where(query[:calorie_condition])
+      end
     end
 
     def build_query(params)
