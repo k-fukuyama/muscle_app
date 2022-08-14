@@ -12,6 +12,9 @@ import tipIndex from './components/tips/index.vue'
 import tipShow from './components/tips/show.vue'
 import tipNew from './components/tips/new.vue'
 import tipEdit from './components/tips/edit.vue'
+import menuIndex from './components/menus/index.vue'
+import menuNew from './components/menus/new.vue'
+import menuEdit from './components/menus/edit.vue'
 
 Vue.use(VueRouter);
 
@@ -29,5 +32,8 @@ export default new VueRouter({
       { path: '/tips/show', name: 'tipShow', component: tipShow, props: true },
       { path: '/tips/new', name: 'tipNew', component: tipNew },
       { path: '/tips/edit', name: 'tipEdit', component: tipEdit, props: true },
+      { path: '/menus/index', name: 'menusIndex', component: menuIndex },
+      { path: '/menus/new', name: 'menusNew', component: menuNew },
+      { path: '/menus/edit', name: 'menusEdit', component: menuEdit, props: true }
   ]
 });
