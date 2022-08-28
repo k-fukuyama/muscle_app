@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_08_12_054137) do
 
   create_table "menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
+    t.string "memo"
     t.float "calorie", default: 0.0, null: false
     t.float "protein", default: 0.0, null: false
     t.float "fat", default: 0.0, null: false

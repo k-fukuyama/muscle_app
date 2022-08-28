@@ -4,11 +4,15 @@ class MenuApi < Grape::API
       present ({menus: Menu.all})
     end
 
+    get '/recommend' do
+      present ({recommend: Menu.all.sample})
+    end
+
     post do
       food_ids = params[:foods].map{|menu_food| menu_food[:id]}
       return unless food_ids.present?
 
-      Services::MenuService.new.create_menu!(Food.where(id: food_ids), params[:name])
+      Services::MenuService.new.create_menu!(Food.where(id: food_ids), params[:name], params[:memo])
 
       present ({isCreated: true})
     end
