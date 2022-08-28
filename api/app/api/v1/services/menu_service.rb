@@ -1,7 +1,7 @@
 module Services
   class MenuService
-    def create_menu!(foods, menu_name)
-      menu = Menu.new(name: menu_name)
+    def create_menu!(foods, menu_name, menu_memo)
+      menu = Menu.new(name: menu_name, memo: menu_memo)
       now = Time.zone.now
 
       ActiveRecord::Base.transaction do

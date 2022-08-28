@@ -7,6 +7,28 @@
       </li>
       <deleteModal :menu="menu" @getMenus='getMenus' />
     </ul>
+
+    <h2>本日のおすすめメニュー</h2>
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">
+              メニュー名
+            </th>
+            <th class="text-left">
+              おすすめポイント
+            </th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr>
+            <td>{{recommendMenu.name}}</td>
+            <td>{{recommendMenu.memo}}</td>
+            </tr>
+          </tbody>
+        </template>
+    </v-simple-table>
   </div>
 </template>
 
@@ -18,10 +40,12 @@ export default {
   components: { deleteModal },
 
   data: () => ({
-    menus: ''
+    menus: '',
+    recommendMenu: ''
   }),
 
   created() {
+    this.getRecommendMenu()
     this.getMenus()
   },
 
@@ -34,6 +58,12 @@ export default {
 
     moveToEditPage(menu) {
       this.$router.push({name: 'menusEdit', params: {editTargetMenu: menu}})
+    },
+
+    getRecommendMenu() {
+      axios.get(`http://localhost:3000/api/v1/menus/recommend`).then((res) => {
+        this.recommendMenu = res.data['recommend']
+      })
     }
   }
 }

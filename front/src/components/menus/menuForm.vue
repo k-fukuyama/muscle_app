@@ -52,6 +52,9 @@
 
     <h2>メニュー名</h2>
     <v-text-field label="メニュー名" v-model="menuName"></v-text-field>
+
+    <h2>メモ</h2>
+    <v-text-field label="このメニューについてのメモ" v-model="menuMemo"></v-text-field>
   
     <h2>メニューに追加した食べ物</h2>
     <v-simple-table>
@@ -231,12 +234,14 @@ export default {
     carbohydrateNum: '',
     calorieNum: '',
     menuName: '',
+    menuMemo: '', 
     selectedFoods: []
   }),
 
   created () {
     if(this.editTargetMenu) {
       this.menuName = this.editTargetMenu.name
+      this.menuMemo = this.editTargetMenu.memo
       this.editMenu()
       newFood.searchFoods({menu_id: this.editTargetMenu.id}).then(response => (this.foods = response.data['foods']))
     }else{
@@ -291,7 +296,7 @@ export default {
     },
 
     createMenu() {
-      axios.post(`http://localhost:3000/api/v1/menus`, {foods: this.selectedFoods, name: this.menuName}).then((res) => {
+      axios.post(`http://localhost:3000/api/v1/menus`, {foods: this.selectedFoods, name: this.menuName, memo: this.menuMemo}).then((res) => {
         console.log(res)
       })
     },
