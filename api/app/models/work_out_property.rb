@@ -1,0 +1,2 @@
+class WorkOutProperty < ApplicationRecord
+end
