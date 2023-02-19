@@ -17,6 +17,8 @@ import menuNew from './components/menus/new.vue'
 import menuEdit from './components/menus/edit.vue'
 import SignUp from './components/sign_up.vue';
 import SignIn from './components/sign_in.vue';
+import WorkOutNew from './components/work_out/new.vue'
+import WorkOutShow from './components/work_out/show.vue'
 
 Vue.use(VueRouter);
 
@@ -37,6 +39,8 @@ const router =  new VueRouter({
       { path: '/menus/index', name: 'menusIndex', component: menuIndex },
       { path: '/menus/new', name: 'menusNew', component: menuNew },
       { path: '/menus/edit', name: 'menusEdit', component: menuEdit, props: true },
+      { path: '/work_out/new', name: 'workOutNew', component: WorkOutNew },
+      { path: '/work_out/show', name: 'workOutShow', component: WorkOutShow, props: true },
       { path: '/sign_up', name: 'sign_up', component: SignUp, alias: "/" },
       { path: '/sign_in', name: 'sign_in', component: SignIn, alias: "/sign_in" }
   ]
