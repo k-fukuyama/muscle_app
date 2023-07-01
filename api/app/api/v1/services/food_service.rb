@@ -21,38 +21,40 @@ module Services
       end
     end
 
+    private
+
     def build_query(params)
       query = {}
 
-      if params['protein_condition'].present? && params['protein_num'].present?
+      if params[:protein_condition].present? && params[:protein_num].present?
         query[:protein_condtion] = set_search_condtion(
           'protein', 
-          set_more_than_or_less_than(params['protein_condition']), 
-          params['protein_num']
+          set_more_than_or_less_than(params[:protein_condition]), 
+          params[:protein_num]
         )
       end
 
-      if params['fat_condition'].present? && params['fat_num'].present?
+      if params[:fat_condition].present? && params[:fat_num].present?
         query[:fat_condition] = set_search_condtion(
           'fat', 
-          set_more_than_or_less_than(params['fat_condition']), 
-          params['fat_num']
+          set_more_than_or_less_than(params[:fat_condition]), 
+          params[:fat_num]
         )
       end
 
-      if params['carbohydrate_condition'].present? && params['carbohydrate_num'].present?
+      if params[:carbohydrate_condition].present? && params[:carbohydrate_num].present?
         query[:carbohydrate_condition] = set_search_condtion(
           'carbohydrate', 
-          set_more_than_or_less_than(params['carbohydrate_condition']), 
-          params['carbohydrate_num']
+          set_more_than_or_less_than(params[:carbohydrate_condition]), 
+          params[:carbohydrate_num]
         )
       end
 
-      if params['calorie_condition'].present? && params['calorie_num'].present?
+      if params[:calorie_condition].present? && params[:calorie_num].present?
         query[:calorie_condition] = set_search_condtion(
           'calorie', 
-          set_more_than_or_less_than(params['calorie_condition']), 
-          params['calorie_num']
+          set_more_than_or_less_than(params[:calorie_condition]), 
+          params[:calorie_num]
         )
       end
 
